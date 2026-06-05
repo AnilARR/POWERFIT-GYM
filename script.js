@@ -182,43 +182,46 @@ document.addEventListener("DOMContentLoaded", () => {
     /* ==========================
        CONTACT FORM VALIDATION
     ========================== */
+const contactForm =
+document.getElementById("contactForm");
 
-    const contactForm =
-        document.getElementById("contactForm");
+if(contactForm){
 
-    if (contactForm) {
+    contactForm.addEventListener("submit", function(e){
 
-        contactForm.addEventListener("submit", function (e) {
+        e.preventDefault();
 
-            e.preventDefault();
+        const name =
+        document.getElementById("name").value;
 
-            const inputs =
-                contactForm.querySelectorAll("input");
+        const email =
+        document.getElementById("email").value;
 
-            let valid = true;
+        const phone =
+        document.getElementById("phone").value;
 
-            inputs.forEach(input => {
+        const message =
+        document.getElementById("message").value;
 
-                if (input.value.trim() === "") {
-                    valid = false;
-                }
-            });
+        const subject =
+        encodeURIComponent(
+            "PowerFit Gym Contact Request"
+        );
 
-            if (!valid) {
+        const body =
+        encodeURIComponent(
+            "Name: " + name + "\n" +
+            "Email: " + email + "\n" +
+            "Phone: " + phone + "\n\n" +
+            "Message:\n" + message
+        );
 
-                alert("Please fill all required fields.");
-
-                return;
-            }
-
-            alert(
-                "Thank you! Your message has been submitted successfully."
-            );
-
-            contactForm.reset();
-        });
-    }
-
+        window.location.href =
+        "mailto:anilrathod.ar716@gmail.com" +
+        "?subject=" + subject +
+        "&body=" + body;
+    });
+}
     /* ==========================
        SCROLL REVEAL ANIMATION
     ========================== */
